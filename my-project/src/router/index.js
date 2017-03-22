@@ -8,11 +8,11 @@ Vue.use(Router)
 export default new Router({
     routes: [{
         path: '/',
-        name: '这里设置路由',
+        name: '这里设置路由,這裡是首頁',
         component: zy
     }, {
         path: '/rz',
-        name: '这里rz',
+        name: '这里日誌',
         component: rz
     }]
 })

@@ -7,10 +7,12 @@
     </ul>
 
     <router-view></router-view>
+    <hello></hello>
   </div>
 </template>
 
 <script>
+// import hello from './components/hello'
 // data在这一定要是方法才能返回出去
 export default {
   name: 'app',
