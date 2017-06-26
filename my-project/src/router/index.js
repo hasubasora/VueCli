@@ -9,7 +9,12 @@ export default new Router({
     routes: [{
         path: '/',
         name: 'Hello',
-        component: Hello
+        // component: Hello
+        components: { //多视图
+            // default: Foo, 没有就默认
+            a: Hello,
+            b: left
+        }
     }, {
         path: '/left',
         name: 'left',

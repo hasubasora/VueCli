@@ -1,12 +1,14 @@
 <template>
   <div id="app">
     <img src="./assets/logo.png">
-    <router-view></router-view>
-    <left></left>
+    <router-view class="Hello" name="a"></router-view>
+     <router-view class="left" name="b"></router-view>
+
   </div>
 </template>
 
 <script>
+
 export default {
   name: 'app'
 }

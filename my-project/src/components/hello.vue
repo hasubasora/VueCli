@@ -1,8 +1,9 @@
 <template>
   <div class="hello">
 
-   <li>   1 {{msg}}</li> <br><li>222222222</li>
+   <li>{{msg}}</li> <br><li>222222222</li>
   </div> 
+
 </template>
 
 <script>
@@ -10,7 +11,7 @@ export default {
   name: 'hello',
   data () {
     return {
-      msg: '移动11我11',
+      msg: '移动我',
       methods:{
         yd:function(){
           

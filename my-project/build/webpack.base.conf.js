@@ -15,12 +15,12 @@ const extractSass = new ExtractTextPlugin({
 });
 
 module.exports = {
-    entry: { // 配置入口
+    entry: { //入口文件 
         app: './src/main.js'
     },
     output: { // 编译后的文件路径
         path: config.build.assetsRoot,
-        filename: '[name].js',
+        filename: '[name].js', //目录文件的名字
         publicPath: process.env.NODE_ENV === 'production' ?
             config.build.assetsPublicPath : config.dev.assetsPublicPath
     },
@@ -31,10 +31,10 @@ module.exports = {
             '@': resolve('src')
         }
     },
-    module: { // 编译规则
+    module: { //配置模块 能编译很多种
         rules: [{
-                test: /\.vue$/,
-                loader: 'vue-loader',
+                test: /\.vue$/, //检测文件
+                loader: 'vue-loader', //处理这些文件
                 options: vueLoaderConfig
             },
             {
