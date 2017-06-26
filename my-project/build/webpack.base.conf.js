@@ -46,8 +46,6 @@ module.exports = {
                 test: /\.css$/,
                 loader: 'style!css'
             },
-
-            //解析.scss文件,对于用 import 或 require 引入的sass文件进行加载，以及<style lang="sass">...</style>声明的内部样式进行加载
             {
                 test: /\.scss$/,
                 use: extractSass.extract({
@@ -80,7 +78,7 @@ module.exports = {
     },
     plugins: [ // 辅助的插件
         extractSass,
-        new ExtractTextPlugin("style.css") //提取出来的样式放在style.css文件中
+        // new ExtractTextPlugin("style.css") //提取出来的样式放在style.css文件中
     ],
     // //.vue文件的配置，以下是为了在.vue文件中使用ES6语法（必须安装babel相关的依赖包），以及把使用css或sass语法的样式提取出来，如果不需要可以忽略
     // vue: {

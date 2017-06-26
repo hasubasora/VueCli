@@ -1,13 +1,12 @@
 <template>
-  <div class="hello">
-
-   <li>   1 {{msg}}</li> <br><li>222222222</li>
+  <div class="left">
+   <li> {{msg}}</li>
   </div> 
 </template>
 
 <script>
 export default {
-  name: 'hello',
+  name: 'left',
   data () {
     return {
       msg: '移动11我11',
