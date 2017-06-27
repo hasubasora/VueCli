@@ -1,7 +1,7 @@
 <template>
   <div class="hello">
-
-   <li>{{msg}}</li> <br><li>222222222</li>
+    
+  
   </div> 
 
 </template>

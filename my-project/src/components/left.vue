@@ -1,18 +1,22 @@
 <template>
   <div class="left">
-   <li> {{msg}}</li>
-  </div> 
+  
+    <ul class="leftList">
+      <li>移動我過去</li>
+      <li>移動我過去</li>
+    </ul>
+  </div>
 </template>
 
 <script>
 export default {
   name: 'left',
-  data () {
+  data() {
     return {
-      msg: '移动11我11',
-      methods:{
-        yd:function(){
-          
+      msg: '左边',
+      methods: {
+        yd: function () {
+
         }
       }
     }
@@ -24,26 +28,18 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-h1, h2 {
-  font-weight: normal;
-}
+.left {
+  width: 180px;
+  height: 1360px;
+  background: #fff;
 
-ul {
-  list-style-type: none;
-  padding: 0;
-  
-}
-.hello{
-  border: 1px red solid;
-  background: #ccc;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-  @extend .hello;
-}
-
-a {
-  color: #42b983;
+  .leftList {
+    display: -webkit-inline-box;
+    li {
+      border: 1px solid red;
+      height: 90px;
+      width: 90px;
+    }
+  }
 }
 </style>
