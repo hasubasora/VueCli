@@ -1,23 +1,30 @@
+
+
 <template>
   <div class="left">
   
     <ul class="leftList">
-      <li>移動我過去</li>
-      <li>移動我過去</li>
+      <li v-drag='drag($event)' draggable="true">移動我過去</li>
+      <li draggable="true">移動我過去</li>
     </ul>
   </div>
 </template>
 
 <script>
+
+
+
+
 export default {
   name: 'left',
   data() {
     return {
       msg: '左边',
       methods: {
-        yd: function () {
+        drag: function (event) {
+          // dom = event.currentTarget
+        },
 
-        }
       }
     }
   }
