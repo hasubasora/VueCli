@@ -4,23 +4,13 @@
   <div class="left">
   
     <ul class="leftList">
-      <li v-dragstart="set()" draggable="true">移動我過去</li>
+      <li draggable="true">移動我過去</li>
       <li draggable="true" @click="set()" :class="[cla, cls,{'red':tt}]">移動我過去</li>
     </ul>
   </div>
 </template>
 
 <script>
-import Vue from 'vue';
-
-// Vue.directive('runoob', function (el, binding) {
-//     // 简写方式设置文本及背景颜色 v-runoob="{ color: 'green', text: '菜鸟教程!' }" 
-//     el.innerHTML = binding.value.text
-//     el.style.backgroundColor = binding.value.color
-// })
-
-
-
 
 export default {
   name: 'left',

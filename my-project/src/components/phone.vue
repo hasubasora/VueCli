@@ -6,7 +6,6 @@
                 <img src="../assets/top.png">
             </div>
     
-            头部
         </div>
     
         <div class="oWrite" data-name='one'>
@@ -17,10 +16,10 @@
             </ul>
         </div>
         <!--header-->
-    
+        {{todos.fis}}1
         <!--身体-->
-        <div v-dragenter style="height:100px;border:1px solid red">
-            <o-noEmpy :msg="msg" v-if="darg!=false"></o-noEmpy>
+        <div v-drags="{is:todos.fis,fs:show}" style="height:100px;border:1px solid red">
+            <o-noEmpy :todos="todos" v-show="todos.fis"></o-noEmpy>
             <div class="picOne">
                 <div class="goodsOne">
                     <img src="..\assets\logo.png">
@@ -38,9 +37,9 @@
 </template>
 
 <script>
-import Vue from 'vue'
 export default {
     name: 'phone',
+    props: ['todos'], //传递参数
     data: function () {
         return {
             list: ['店铺首页', '全部宝贝', '新品上架', '新动态'],
@@ -53,47 +52,32 @@ export default {
             darg: false
         }
     },
-    props: ['msg'],//传递参数
+    computed: {
+        normalizedSize: function () {
+            return this.todos.trim().toLowerCase()
+        }
+    },
     methods: {
         show() {
-            this.darg = true;
-            console.log(356374839)
+            this.todos.fis = true;
+            console.log(this.todos.fis)
         }
     },
     components: {
         'o-Empy': require('../components/oEmpy.vue'),
         'o-noEmpy': require('../components/noEmpy.vue'),
     },
-    directives: {//自定义指令
-        dragenter: {
-            // 指令的定义
-            inserted: function (el, binding) {
-                // 聚焦元素
-                el.ondragenter = function(e) {
-                    // console.info(JSON.stringify(binding.expression));
-                    // console.info(JSON.stringify(binding.value));
-                    console.info('进来了！');
-                }
-                el.ondragover = function (e) {
-                    //阻止冒泡的默认事件ondrop才能促发
-                    var e = e || window.event;
-                    e.preventDefault();
-                    console.info('文件在里面动');
-                }
-                el.ondragleave = function (e) {
-                    console.info('文件离开了');
-                }
-                el.ondrop = function (e) {
-                    //获取到上面设置的数据，进行修改
-                    //e.dataTransfer.getData("data");
-                    e.dataTransfer.getData("data");
-                    console.info('在里面放手了' + e.dataTransfer.getData("data"));
-                    //要在ondragover添加阻止默认时间这个才促发
-                }
+    // directives: { //自定义指令
+    //     dragenter: {
+    //         isFn: true,
+    //         acceptStatement: true,
+    //         // 指令的定义
+    //         inserted: function (el, binding) {
 
-            }
-        }
-    }
+
+    //         }
+    //     }
+    // }
 
 }
 </script>
@@ -140,7 +124,6 @@ $legacy-support-for-ie:true;
             height: 20px;
         }
     }
-
     .oWrite {
         width: 100%;
         background: #fff;
@@ -157,14 +140,12 @@ $legacy-support-for-ie:true;
     }
 }
 
-
 .picOne {
     background: #fff;
     padding: 16px;
     margin-bottom: 20px;
     .goodsOne {
         margin: 16px;
-
         img {
             display: block;
         }
