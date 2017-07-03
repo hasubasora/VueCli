@@ -45,13 +45,13 @@ Vue.directive('drags', {
     },
     // 当绑定元素插入到 DOM 中。 被绑定元素插入父节点时调用（父节点存在即可调用，不必存在于 document 中）。
     inserted: function(el, binding, vnode, oldVnode) {
-        var s = JSON.stringify
-            // console.log('name: ' + s(binding.name))
-        console.log('value: ' + s(binding.value))
-        console.log('expression: ' + s(binding.expression))
-        console.log('argument: ' + s(binding.arg))
-            // console.log('modifiers: ' + s(binding.modifiers))
-        console.log('vnode keys: ' + Object.keys(vnode).join(', '))
+        // var s = JSON.stringify
+        // console.log('name: ' + s(binding.name))
+        // console.log('value: ' + s(binding.value))
+        // console.log('expression: ' + s(binding.expression))
+        // console.log('argument: ' + s(binding.arg))
+        // console.log('modifiers: ' + s(binding.modifiers))
+        // console.log('vnode keys: ' + Object.keys(vnode).join(', '))
 
         var self = el; //存下this，方便以后用 
         self.ondragenter = function(e) {
@@ -69,21 +69,21 @@ Vue.directive('drags', {
     //被绑定元素所在模板完成一次更新周期时调用。
     componentUpdated: function() {},
     //只调用一次， 指令与元素解绑时调用。
-    unbind: function(fn) {
-        var self = this; //存下this，方便以后用 
-        //在directive上绑定的属性和方法 
-        //都可通过self.xxx self.touchstart()获取 self.tapObj = {}; 
-        //初始化我们的tap对象 
-        // if (typeof fn !== 'function') { //你别给我搞事！ 
-        //     return console.error('The param of directive "v-drags" must be a function!');
-        // }
-        // self.handler = function(e) {
-        //     //给当前directive存个handler方便之后调用 
-        //     e.tapObj = self.tapObj;
-        //     //把我们的tap对象赋值给原生event对象上，方便回调里获取参数 
-        //     fn.call(self, e);
-        // };
+    unbind: function() {}
+})
 
 
-    }
+Vue.directive('dragleave', {
+    acceptStatement: true,
+    inserted: function(el, binding, vnode, oldVnode) {
+        var self = el; //存下this，方便以后用 
+        self.ondragleave = function(e) {
+            // Vue.set(todos.fis, 0, true);
+            binding.value.is = true;
+            binding.value.fs();
+            // console.log(binding.value.fs)
+            console.log('文件likai了')
+        }
+    },
+
 })
