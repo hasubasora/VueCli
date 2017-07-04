@@ -33,8 +33,8 @@ export default new Router({
 //     el.style.backgroundColor = binding.value.color
 // })
 
-// 注册一个全局自定义指令 v-focus
-Vue.directive('drags', {
+// 注册一个全局自定义指令 拖进去
+Vue.directive('dragenter', {
     acceptStatement: true,
     //只调用一次，指令第一次绑定到元素时调用，用这个钩子函数可以定义一个在绑定时执行一次的初始化动作。
     bind: function(el, binding, vnode, oldVnode) {
@@ -55,34 +55,69 @@ Vue.directive('drags', {
 
         var self = el; //存下this，方便以后用 
         self.ondragenter = function(e) {
-            // Vue.set(todos.fis, 0, true);
             binding.value.is = true;
             binding.value.fs();
-            console.log(binding.value.fs)
+            // console.log(binding.value.fs)
             console.log('文件进来了')
         }
+
+        // self.ondragover = function(e) {
+        //     var e = e || window.event;
+        //     e.preventDefault();
+        //     // console.log(binding.value.fs)
+        //     console.log('在动')
+        // }
+
+
     },
     //被绑定元素所在的模板更新时调用，而不论绑定值是否变化。通过比较更新前后的绑定值，可以忽略不必要的模板更新（详细的钩子函数参数见下）。
     update: function(el, binding, vnode, oldVnode) {
 
     },
     //被绑定元素所在模板完成一次更新周期时调用。
-    componentUpdated: function() {},
+    componentUpdated: function(el, binding, vnode, oldVnode) {
+
+    },
     //只调用一次， 指令与元素解绑时调用。
-    unbind: function() {}
+    unbind: function() {
+
+    }
 })
 
-
+// 离开
 Vue.directive('dragleave', {
     acceptStatement: true,
     inserted: function(el, binding, vnode, oldVnode) {
         var self = el; //存下this，方便以后用 
         self.ondragleave = function(e) {
-            // Vue.set(todos.fis, 0, true);
-            binding.value.is = true;
-            binding.value.fs();
+            binding.value.is = false;
+            binding.value.fh();
             // console.log(binding.value.fs)
-            console.log('文件likai了')
+            console.log('出去了')
+        }
+    },
+
+})
+
+// 开始
+Vue.directive('dragstart', {
+    acceptStatement: true,
+    inserted: function(el, binding, vnode, oldVnode) {
+        var self = el; //存下this，方便以后用 
+        self.ondragstart = function(e) {
+            var e = e || window.event;
+            //兼容火狐用下面才可以，添加数据
+            //e.dataTransfer.setData("key","设置值");
+            e.dataTransfer.setData("data", el);
+            // 设置光标样式
+            //none, copy, copyLink, copyMove, link, linkMove, move, all 和 uninitialized
+            e.dataTransfer.effectAllowed = "move";
+            this.style.background = 'yellow';
+            this.innerHTML = "开始拖动";
+        }
+
+        self.ondrag = function() {
+            this.innerHTML = "拖动中";
         }
     },
 

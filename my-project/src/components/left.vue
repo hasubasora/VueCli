@@ -4,7 +4,7 @@
   <div class="left">
   
     <ul class="leftList">
-      <li draggable="true">移動我過去</li>
+      <li v-dragstart draggable="true">移動我過去</li>
       <li draggable="true" @click="set()" :class="[cla, cls,{'red':tt}]">移動我過去</li>
     </ul>
   </div>

@@ -1,46 +1,46 @@
 <template>
-    <div class="phone">
-        <!--header-->
-        <div class="oHeader">
-            <div class="otitle">
-                <img src="../assets/top.png">
-            </div>
-    
+<div class="phone" v-dragleave="{is:todos.fis,fh:hide}">
+    <!--header-->
+    <div class="oHeader">
+        <div class="otitle">
+            <img src="../assets/top.png">
         </div>
-    
-        <div class="oWrite" data-name='one'>
-            <ul>
-                <li v-for="values in list">
-                    {{values}}
-                </li>
-            </ul>
-        </div>
-        <!--header-->
-        {{todos.fis}}1
-        <!--身体-->
-        <div v-drags="{is:todos.fis,fs:show}" style="height:100px;border:1px solid red">
-            <o-noEmpy :todos="todos" v-show="todos.fis"></o-noEmpy>
-            <div class="picOne">
-                <div class="goodsOne">
-                    <img src="..\assets\logo.png">
-                    <div class="goodsTitle">
-                        <p>{{goodsJson.title}}</p>
-                        <strong>￥{{goodsJson.price}}</strong>
-                        <span>銷售量{{goodsJson.amount}}</span>
-                    </div>
+
+    </div>
+
+    <div class="oWrite" data-name='one'>
+        <ul>
+            <li v-for="values in list">
+                {{values}}
+            </li>
+        </ul>
+    </div>
+    <!--header-->
+    {{todos.fis}}1
+    <!--身体-->
+    <div v-dragenter="{is:todos.fis,fs:show}" style="border:1px solid blue;background:skyblue;height:400px;">
+        <o-noEmpy :todos="todos" v-show="todos.fis"></o-noEmpy>
+        <div class="picOne" style="border:1px solid yellow;">
+            <div class="goodsOne">
+                <img src="..\assets\logo.png">
+                <div class="goodsTitle">
+                    <p>{{goodsJson.title}}</p>
+                    <strong>￥{{goodsJson.price}}</strong>
+                    <span>銷售量{{goodsJson.amount}}</span>
                 </div>
             </div>
         </div>
-    
-        <!--身体-->
     </div>
+
+    <!--身体-->
+</div>
 </template>
 
 <script>
 export default {
     name: 'phone',
     props: ['todos'], //传递参数
-    data: function () {
+    data: function() {
         return {
             list: ['店铺首页', '全部宝贝', '新品上架', '新动态'],
             goodsJson: {
@@ -53,13 +53,17 @@ export default {
         }
     },
     computed: {
-        normalizedSize: function () {
+        normalizedSize: function() {
             return this.todos.trim().toLowerCase()
         }
     },
     methods: {
         show() {
             this.todos.fis = true;
+            console.log(this.todos.fis)
+        },
+        hide() {
+            this.todos.fis = false;
             console.log(this.todos.fis)
         }
     },
