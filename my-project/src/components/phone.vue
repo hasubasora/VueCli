@@ -1,55 +1,46 @@
 <template>
-    <div class="phone">
-        <!--header-->
-        <div class="oHeader">
-            <div class="otitle">
-                <img src="../assets/top.png">
-            </div>
-    
-            头部
+<div class="phone" v-dragleave="{is:todos.fis,fh:hide}">
+    <!--header-->
+    <div class="oHeader">
+        <div class="otitle">
+            <img src="../assets/top.png">
         </div>
-    
-        <div class="oWrite" data-name='one'>
-            <ul>
-                <li v-for="values in list">
-                    {{values}}
-                </li>
-            </ul>
-        </div>
-        <!--header-->
-    
-        <!--身体-->
-        <o-noEmpy></o-noEmpy>
-    
-        <div class="picOne">
-            <div class="goodsOne">
-                <img src="..\assets\logo.png">
-                <div class="goodsTitle">
-                    <p>{{goodsJson.title}}</p>
-                    <strong>￥{{goodsJson.price}}</strong>
-                    <span>銷售量{{goodsJson.amount}}</span>
-                </div>
-            </div>
-        </div>
-        <div class="picOne">
-            <div class="goodsOne">
-                <img src="..\assets\logo.png">
-                <div class="goodsTitle">
-                    <p>{{goodsJson.title}}</p>
-                    <strong>￥{{goodsJson.price}}</strong>
-                    <span>銷售量{{goodsJson.amount}}</span>
-                </div>
-            </div>
-        </div>
-        <!--身体-->
+
     </div>
+
+    <div class="oWrite" data-name='one'>
+        <ul>
+            <li v-for="values in list">
+                {{values}}
+            </li>
+        </ul>
+    </div>
+    <!--header-->
+    {{todos.fis}}1
+    <!--身体-->
+    <div v-dragenter="{is:todos.fis,fs:show}" style="border:1px solid blue;background:skyblue;height:400px;">
+        <o-noEmpy :todos="todos" v-show="todos.fis"></o-noEmpy>
+        <div class="picOne" style="border:1px solid yellow;">
+            <div class="goodsOne">
+                <img src="..\assets\logo.png">
+                <div class="goodsTitle">
+                    <p>{{goodsJson.title}}</p>
+                    <strong>￥{{goodsJson.price}}</strong>
+                    <span>銷售量{{goodsJson.amount}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--身体-->
+</div>
 </template>
 
 <script>
-
 export default {
     name: 'phone',
-    data: function () {
+    props: ['todos'], //传递参数
+    data: function() {
         return {
             list: ['店铺首页', '全部宝贝', '新品上架', '新动态'],
             goodsJson: {
@@ -57,15 +48,40 @@ export default {
                 id: 102,
                 price: '120.00',
                 amount: 999
-            }
+            },
+            darg: false
         }
     },
-    methods: {},
+    computed: {
+        normalizedSize: function() {
+            return this.todos.trim().toLowerCase()
+        }
+    },
+    methods: {
+        show() {
+            this.todos.fis = true;
+            console.log(this.todos.fis)
+        },
+        hide() {
+            this.todos.fis = false;
+            console.log(this.todos.fis)
+        }
+    },
     components: {
         'o-Empy': require('../components/oEmpy.vue'),
         'o-noEmpy': require('../components/noEmpy.vue'),
-    }
+    },
+    // directives: { //自定义指令
+    //     dragenter: {
+    //         isFn: true,
+    //         acceptStatement: true,
+    //         // 指令的定义
+    //         inserted: function (el, binding) {
 
+
+    //         }
+    //     }
+    // }
 
 }
 </script>
@@ -112,7 +128,6 @@ $legacy-support-for-ie:true;
             height: 20px;
         }
     }
-
     .oWrite {
         width: 100%;
         background: #fff;
@@ -129,14 +144,12 @@ $legacy-support-for-ie:true;
     }
 }
 
-
 .picOne {
     background: #fff;
     padding: 16px;
     margin-bottom: 20px;
     .goodsOne {
         margin: 16px;
-
         img {
             display: block;
         }

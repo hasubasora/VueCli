@@ -1,22 +1,31 @@
 <template>
-<div id="app">
-
-  <div class="leftBox">
-    <router-view name="left"></router-view>
+  <div id="app">
+  
+    <div class="leftBox">
+      <router-view :todos="todos" name="left"></router-view>
+    </div>
+    <div class="helloBox">
+      <router-view :todos="todos" name="phone"></router-view>
+    </div>
+    <div class="rightBox">
+      <router-view :todos="todos" name="right"></router-view>
+    </div>
   </div>
-  <div class="helloBox">
-    <router-view name="phone"></router-view>
-  </div>
-  <div class="rightBox">
-    <router-view name="right"></router-view>
-  </div>
-</div>
 </template>
 
 <script>
 export default {
-  name: 'app'
+  name: 'app',
+  data() {
+    return {
+      todos: {
+        fis: false
+      }
+    }
+  }
 }
+
+
 </script>
 
 <style lang="scss">
