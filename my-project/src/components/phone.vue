@@ -1,5 +1,5 @@
 <template>
-<div class="phone" v-dragleave="{is:todos.fis,fh:hide}">
+<div class="phone">
     <!--header-->
     <div class="oHeader">
         <div class="otitle">
@@ -18,18 +18,10 @@
     <!--header-->
     {{todos.fis}}1
     <!--身体-->
-    <div v-dragenter="{is:todos.fis,fs:show}" style="border:1px solid blue;background:skyblue;height:400px;">
+    <div class="todosBox" style="border:1px solid blue;background:skyblue;min-height:400px;">
         <o-noEmpy :todos="todos" v-show="todos.fis"></o-noEmpy>
-        <div class="picOne" style="border:1px solid yellow;">
-            <div class="goodsOne">
-                <img src="..\assets\logo.png">
-                <div class="goodsTitle">
-                    <p>{{goodsJson.title}}</p>
-                    <strong>￥{{goodsJson.price}}</strong>
-                    <span>銷售量{{goodsJson.amount}}</span>
-                </div>
-            </div>
-        </div>
+        <o-goods :todos="todos" v-show="todos.fis"></o-goods>
+        
     </div>
 
     <!--身体-->
@@ -43,12 +35,7 @@ export default {
     data: function() {
         return {
             list: ['店铺首页', '全部宝贝', '新品上架', '新动态'],
-            goodsJson: {
-                title: '買的東西很多就是一個都用不上，怎麼辦啊',
-                id: 102,
-                price: '120.00',
-                amount: 999
-            },
+          
             darg: false
         }
     },
@@ -58,30 +45,14 @@ export default {
         }
     },
     methods: {
-        show() {
-            this.todos.fis = true;
-            console.log(this.todos.fis)
-        },
-        hide() {
-            this.todos.fis = false;
-            console.log(this.todos.fis)
-        }
+      
     },
     components: {
         'o-Empy': require('../components/oEmpy.vue'),
         'o-noEmpy': require('../components/noEmpy.vue'),
+        'o-goods': require('../components/goods.vue'),
     },
-    // directives: { //自定义指令
-    //     dragenter: {
-    //         isFn: true,
-    //         acceptStatement: true,
-    //         // 指令的定义
-    //         inserted: function (el, binding) {
-
-
-    //         }
-    //     }
-    // }
+    
 
 }
 </script>

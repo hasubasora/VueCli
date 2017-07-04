@@ -19,7 +19,7 @@ export default {
   data() {
     return {
       todos: {
-        fis: false
+        fis: false,_move:false,_x:'',_y:''
       }
     }
   }
