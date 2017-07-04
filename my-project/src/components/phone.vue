@@ -1,58 +1,77 @@
 <template>
-<div class="phone">
-    <!--header-->
-    <div class="oHeader">
-        <div class="otitle">
-            <img src="../assets/top.png">
+    <div class="phone">
+        <!--header-->
+        <div class="oHeader">
+            <div class="otitle">
+                <img src="../assets/top.png">
+            </div>
+    
         </div>
-
+    
+        <div class="oWrite" data-name='one'>
+            <ul>
+                <li v-for="values in list">
+                    {{values}}
+                </li>
+            </ul>
+        </div>
+        <!--header-->
+        {{todos.fis}}1
+        <!--身体-->
+        <div class="todosBox" v-dragenter="{fs:show,fh:hide,bl:balance}" style="border:1px solid blue;background:skyblue;min-height:400px;">
+            <o-noEmpy :todos="todos" v-show="todos.fis"></o-noEmpy>
+            <o-goods :todos="todos" v-show="todos.fis"></o-goods>
+    
+        </div>
+    
+        <!--身体-->
     </div>
-
-    <div class="oWrite" data-name='one'>
-        <ul>
-            <li v-for="values in list">
-                {{values}}
-            </li>
-        </ul>
-    </div>
-    <!--header-->
-    {{todos.fis}}1
-    <!--身体-->
-    <div class="todosBox" style="border:1px solid blue;background:skyblue;min-height:400px;">
-        <o-noEmpy :todos="todos" v-show="todos.fis"></o-noEmpy>
-        <o-goods :todos="todos" v-show="todos.fis"></o-goods>
-        
-    </div>
-
-    <!--身体-->
-</div>
 </template>
 
 <script>
 export default {
     name: 'phone',
     props: ['todos'], //传递参数
-    data: function() {
+    data: function () {
         return {
             list: ['店铺首页', '全部宝贝', '新品上架', '新动态'],
-          
+
             darg: false
         }
     },
     computed: {
-        normalizedSize: function() {
+        normalizedSize: function () {
             return this.todos.trim().toLowerCase()
         }
     },
     methods: {
-      
+        show() {
+            this.todos.fis = true;
+        },
+        balance() {
+            this.todos.fis = true;
+        },
+        hide() {
+            this.todos.fis = false;
+        },
+        phoneList(x) {
+            // 获取距离左边与上面的距离 获取右边与下面的距离
+            if (x > this.$el.offsetLeft) {
+                console.info(x + '111')
+            }
+
+            console.info(this.$el.offsetTop)
+            console.info(this.$el.offsetLeft)
+            console.info(this.$el.offsetRight)
+
+        }
     },
     components: {
         'o-Empy': require('../components/oEmpy.vue'),
         'o-noEmpy': require('../components/noEmpy.vue'),
         'o-goods': require('../components/goods.vue'),
     },
-    
+
 
 }
 </script>
@@ -110,35 +129,6 @@ $legacy-support-for-ie:true;
                 width: 25%;
                 height: 40px;
                 line-height: 40px;
-            }
-        }
-    }
-}
-
-.picOne {
-    background: #fff;
-    padding: 16px;
-    margin-bottom: 20px;
-    .goodsOne {
-        margin: 16px;
-        img {
-            display: block;
-        }
-        .goodsTitle {
-            @include clearfix;
-            p {
-                height: rem(40);
-                line-height: rem(16);
-                text-align: left;
-            }
-            strong {
-                float: left;
-                color: red;
-            }
-            span {
-                float: right;
-                color: #6e6e6e;
-                font-size: 14px;
             }
         }
     }

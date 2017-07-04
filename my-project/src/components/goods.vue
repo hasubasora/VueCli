@@ -29,6 +29,47 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style scoped lang='scss'>
+$legacy-support-for-ie:true;
+@mixin clearfix {
+    @if $legacy-support-for-ie {
+        *zoom: 1;
+    }
+    &:before,
+    &:after {
+        content: "";
+        display: table;
+    }
+    &:after {
+        clear: both;
+        overflow: hidden;
+    }
+}
+.picOne {
+    background: #fff;
+    padding: 16px;
+    margin-bottom: 20px;
+    .goodsOne {
+        margin: 16px;
+        img {
+        }
+        .goodsTitle {
+            @include clearfix;
+            p {
+                height: rem(40);
+                line-height: rem(16);
+                text-align: left;
+            }
+            strong {
+                float: left;
+                color: red;
+            }
+            span {
+                float: right;
+                color: #6e6e6e;
+                font-size: 14px;
+            }
+        }
+    }
+}
 </style>

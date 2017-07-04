@@ -48,10 +48,10 @@ Vue.directive('mouse', function(el, binding) {
             if (binding.value.is) {
                 var x = e.pageX - _xx; //移动时根据鼠标位置计算控件左上角的绝对位置
                 var y = e.pageY - _yy;
-                console.log(x + '-4-' + y)
+                console.log(x + '-4-' + y) //x
                 el.style.top = y + 'px'
                 el.style.left = x + 'px'
-                document.title = x + '-' + y;
+                binding.value.ph(x);
             }
             el.addEventListener('mouseup', function(params) {
                 binding.value.is = false;
@@ -60,5 +60,26 @@ Vue.directive('mouse', function(el, binding) {
             })
         })
     })
+
+})
+
+Vue.directive('dragenter', function(el, binding) {
+    var self = el; //存下this，方便以后用 
+    self.ondragenter = function(e) {
+        binding.value.fs();
+        // console.log(binding.value.fs)
+        // console.log('文件进来了')
+    }
+    self.ondragover = function(e) {
+        var e = e || window.event;
+        e.preventDefault();
+        binding.value.bl();
+        // console.log('在动')
+    }
+    self.ondragleave = function(e) {
+        binding.value.fh();
+        // console.log(binding.value.balance)
+        // console.log('出去了')
+    }
 
 })

@@ -1,20 +1,20 @@
 
 
 <template>
-<div class="left">
-
-  <ul class="leftList">
-    <li v-mouse="{is:todos._move,fn:move}" class="oli1"></li>
-
-    <!--<li draggable="true" @click="set()" :class="[cla, cls,{'red':tt}]">2</li>-->
-  </ul>
-</div>
+  <div class="left">
+  
+    <ul class="leftList">
+      <li v-mouse="{is:todos._move,fn:move,ph:phoneList}" draggable="true" class="oli1"></li>
+  
+      <!--<li draggable="true" @click="set()" :class="[cla, cls,{'red':tt}]">2</li>-->
+    </ul>
+  </div>
 </template>
 
 <script>
 export default {
   name: 'left',
-  props: ['todos'], //传递参数
+  props: ['todos','phoneList'], //传递参数
   data() {
     return {
       cls: 'act',
@@ -36,9 +36,10 @@ export default {
       this.todos._x = x;
       this.todos._y = y;
       // console.log(this.todos._x + '-2-' + this.todos._y)
-      
 
-    }
+
+    },
+  
   },
 
 
@@ -61,12 +62,10 @@ export default {
     li {
       position: absolute;
       top: 3px;
-      left:5px;
+      left: 5px;
       border: 1px solid red;
       height: 90px;
       width: 90px;
-    
-      
     }
   }
 }
