@@ -5,7 +5,7 @@
       <router-view :todos="todos" name="left"></router-view>
     </div>
     <div class="helloBox">
-      <router-view :todos="todos" name="phone"></router-view>
+      <router-view :todos="todos" @my-event="onMyEvent" name="phone"></router-view>
     </div>
     <div class="rightBox">
       <router-view :todos="todos" name="right"></router-view>
@@ -14,16 +14,37 @@
 </template>
 
 <script>
+import { bus } from './assets/js/bus.js'
 export default {
   name: 'app',
   data() {
     return {
       todos: {
-        fis: false,_move:false,_x:'',_y:''
-      }
+        fis: false, _move: false, _x: '', _y: ''
+      },
+      phoneSize: {}
+    }
+  },
+  methods: {
+    // onMyEvent() {
+    //   //从phone 触发事件 监听到 @my-event="onMyEvent" 执行以下
+    //   this.$on('my-event', function (phoneSize) {
+    //     this.phoneSize = phoneSize;
+    //     console.log(phoneSize)
+    //   })
+    //   console.log('怎么没反应')
+
+
+    // },
+    onMyEvent() {
+      bus.$on('my-event', function (phoneSize) {
+        this.phoneSize = e;
+        console.log(phoneSize + '888')
+      })
+      console.log('怎么没反应')
     }
   }
-  
+
 }
 
 

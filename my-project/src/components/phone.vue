@@ -1,3 +1,4 @@
+
 <template>
     <div class="phone">
         <!--header-->
@@ -10,7 +11,7 @@
     
         <div class="oWrite" data-name='one'>
             <ul>
-                <li v-for="values in list">
+                <li v-for="(values,key) in list">
                     {{values}}
                 </li>
             </ul>
@@ -18,7 +19,7 @@
         <!--header-->
         {{todos.fis}}1
         <!--身体-->
-        <div class="todosBox" v-dragenter="{fs:show,fh:hide,bl:balance}" style="border:1px solid blue;background:skyblue;min-height:400px;">
+        <div class="todosBox" @click="onMyEventList" v-dragenter="{fs:show,fh:hide,bl:balance}" style="border:1px solid blue;background:skyblue;min-height:400px;">
             <o-noEmpy :todos="todos" v-show="todos.fis"></o-noEmpy>
             <o-goods :todos="todos" v-show="todos.fis"></o-goods>
     
@@ -29,6 +30,7 @@
 </template>
 
 <script>
+import {bus} from '../assets/js/bus.js'
 export default {
     name: 'phone',
     props: ['todos'], //传递参数
@@ -36,7 +38,7 @@ export default {
         return {
             list: ['店铺首页', '全部宝贝', '新品上架', '新动态'],
 
-            darg: false
+            phoneSize: {}
         }
     },
     computed: {
@@ -54,16 +56,35 @@ export default {
         hide() {
             this.todos.fis = false;
         },
-        phoneList(x) {
-            // 获取距离左边与上面的距离 获取右边与下面的距离
-            if (x > this.$el.offsetLeft) {
-                console.info(x + '111')
+        // onMyEventList(x) {
+        //      this.phoneSize = {
+        //         t: this.$el.offsetTop,
+        //         l: this.$el.offsetLeft,
+        //         w: this.$el.clientWidth,
+        //         h: this.$el.clientHeight
+        //     }
+        //     // 获取距离左边与上面的距离 获取右边与下面的距离 传给left
+        //     this.$emit('my-event', this.phoneSize)//触发
+        //     console.info(this.$el.offsetTop)
+        //     console.info(this.$el.offsetLeft)
+        //     console.info(this.$el.clientWidth)
+        //     console.info(this.$el.clientHeight)
+        //     console.info(this.phoneSize)
+        // },
+         onMyEventList(x) {
+             this.phoneSize = {
+                t: this.$el.offsetTop,
+                l: this.$el.offsetLeft,
+                w: this.$el.clientWidth,
+                h: this.$el.clientHeight
             }
-
+            // 获取距离左边与上面的距离 获取右边与下面的距离 传给left
+            bus.$emit('my-event', this.phoneSize)//触发
             console.info(this.$el.offsetTop)
             console.info(this.$el.offsetLeft)
-            console.info(this.$el.offsetRight)
-
+            console.info(this.$el.clientWidth)
+            console.info(this.$el.clientHeight)
+            console.info(this.phoneSize)
         }
     },
     components: {

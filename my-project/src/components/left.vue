@@ -4,7 +4,7 @@
   <div class="left">
   
     <ul class="leftList">
-      <li v-mouse="{is:todos._move,fn:move,ph:phoneList}" draggable="true" class="oli1"></li>
+      <li v-mouse="{is:todos._move,fn:move}" draggable="true" class="oli1"></li>
   
       <!--<li draggable="true" @click="set()" :class="[cla, cls,{'red':tt}]">2</li>-->
     </ul>
@@ -14,7 +14,7 @@
 <script>
 export default {
   name: 'left',
-  props: ['todos','phoneList'], //传递参数
+  props: ['todos'], //传递参数
   data() {
     return {
       cls: 'act',
