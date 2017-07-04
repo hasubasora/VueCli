@@ -4,14 +4,13 @@
   <div class="left">
   
     <ul class="leftList">
-      <li v-drag='drag($event)' draggable="true">移動我過去</li>
+      <li draggable="true">移動我過去</li>
       <li draggable="true">移動我過去</li>
     </ul>
   </div>
 </template>
 
 <script>
-
 
 
 

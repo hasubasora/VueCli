@@ -26,3 +26,11 @@ export default new Router({
         component: right
     }]
 })
+
+Vue.directive('demo', function(value) {
+    console.info(value.color); //white
+    console.info(value.text) // hello!
+})
+var demo = new Vue({
+    el: '.left'
+})
