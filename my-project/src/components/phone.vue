@@ -17,34 +17,37 @@
             </ul>
         </div>
         <!--header-->
-        {{todos.fis}}1
+        {{todos.fis}}   {{price}}
         <!--身体-->
         <div class="todosBox" @click="onMyEventList" v-dragenter="{fs:show,fh:hide,bl:balance}" style="border:1px solid blue;background:skyblue;min-height:400px;">
             <o-noEmpy :todos="todos" v-show="todos.fis"></o-noEmpy>
             <o-goods :todos="todos" v-show="todos.fis"></o-goods>
     
         </div>
-    
+     
         <!--身体-->
     </div>
 </template>
 
 <script>
-import {bus} from '../assets/js/bus.js'
+import {
+    bus
+} from '../assets/js/bus.js'
 export default {
     name: 'phone',
     props: ['todos'], //传递参数
     data: function () {
         return {
             list: ['店铺首页', '全部宝贝', '新品上架', '新动态'],
-
+            price: 5,
             phoneSize: {}
         }
     },
     computed: {
         normalizedSize: function () {
             return this.todos.trim().toLowerCase()
-        }
+        },
+
     },
     methods: {
         show() {
@@ -56,7 +59,27 @@ export default {
         hide() {
             this.todos.fis = false;
         },
-        // onMyEventList(x) {
+
+        onMyEventList(x) { //可以的
+            // console.log(this.$route.params)
+            this.phoneSize = {
+                t: this.$el.offsetTop,
+                l: this.$el.offsetLeft,
+                w: this.$el.clientWidth,
+                h: this.$el.clientHeight
+            }
+            // 点击的这边用 $emit 传给left
+            // this.$emit('my-event', this.phoneSize) //触发
+            // store
+            // this.$store.commit('increment', this.price) //触发
+            this.$store.dispatch('increase', this.price) //触发
+            // console.info(this.$el.offsetTop)
+            // console.info(this.$el.offsetLeft)
+            // console.info(this.$el.clientWidth)
+            // console.info(this.$el.clientHeight)
+            console.info(this.phoneSize)
+        },
+        //  onMyEventList(x) {//有问题
         //      this.phoneSize = {
         //         t: this.$el.offsetTop,
         //         l: this.$el.offsetLeft,
@@ -64,28 +87,8 @@ export default {
         //         h: this.$el.clientHeight
         //     }
         //     // 获取距离左边与上面的距离 获取右边与下面的距离 传给left
-        //     this.$emit('my-event', this.phoneSize)//触发
-        //     console.info(this.$el.offsetTop)
-        //     console.info(this.$el.offsetLeft)
-        //     console.info(this.$el.clientWidth)
-        //     console.info(this.$el.clientHeight)
-        //     console.info(this.phoneSize)
-        // },
-         onMyEventList(x) {
-             this.phoneSize = {
-                t: this.$el.offsetTop,
-                l: this.$el.offsetLeft,
-                w: this.$el.clientWidth,
-                h: this.$el.clientHeight
-            }
-            // 获取距离左边与上面的距离 获取右边与下面的距离 传给left
-            bus.$emit('my-event', this.phoneSize)//触发
-            console.info(this.$el.offsetTop)
-            console.info(this.$el.offsetLeft)
-            console.info(this.$el.clientWidth)
-            console.info(this.$el.clientHeight)
-            console.info(this.phoneSize)
-        }
+        //     bus.$emit('my-event', this.phoneSize)//触发
+        // }
     },
     components: {
         'o-Empy': require('../components/oEmpy.vue'),

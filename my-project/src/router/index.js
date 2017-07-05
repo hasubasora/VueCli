@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import right from '@/components/right'
 import left from '@/components/left'
 import phone from '@/components/phone'
+import RedApple from '@/components/RedApple'
 Vue.use(Router)
 
 export default new Router({
@@ -17,13 +18,23 @@ export default new Router({
             phone: phone
         }
     }, {
-        path: '/left',
+        path: '/left:color',
         name: 'left',
         component: left
     }, {
         path: '/right',
         name: 'right',
-        component: right
+        component: right,
+        cheildren: [ //子子组件页面
+            {
+                path: 'red',
+                component: RedApple
+            }
+        ]
+    }, {
+        //重定向
+        path: '/',
+        redirect: 'RedApple'
     }]
 })
 
@@ -35,7 +46,7 @@ Vue.directive('mouse', function(el, binding) {
     // console.log(oldVnode);
     el.addEventListener('click', function(e) {
         //     console.log(1243)
-        var _xx, _yy;
+        let _xx, _yy;
         el.addEventListener('mousedown', function(e) {
             var e = e || event;
             binding.value.is = true;
@@ -46,8 +57,8 @@ Vue.directive('mouse', function(el, binding) {
         document.addEventListener('mousemove', function(e) {
             var e = e || event;
             if (binding.value.is) {
-                var x = e.pageX - _xx; //移动时根据鼠标位置计算控件左上角的绝对位置
-                var y = e.pageY - _yy;
+                let x = e.pageX - _xx; //移动时根据鼠标位置计算控件左上角的绝对位置
+                let y = e.pageY - _yy;
                 console.log(x + '-4-' + y) //x
                 el.style.top = y + 'px'
                 el.style.left = x + 'px'
@@ -64,7 +75,7 @@ Vue.directive('mouse', function(el, binding) {
 })
 
 Vue.directive('dragenter', function(el, binding) {
-    var self = el; //存下this，方便以后用 
+    let self = el; //存下this，方便以后用 
     self.ondragenter = function(e) {
         binding.value.fs();
         // console.log(binding.value.fs)
