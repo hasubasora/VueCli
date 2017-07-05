@@ -1,16 +1,20 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
+import Vuex from 'vuex'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import App from './App'
 import router from './router'
+
+
 
 Vue.config.productionTip = false
 
 // 全局注册组件
 // Vue.component('my-header', [definition定义])
 Vue.use(VueAxios, axios) //告诉vue 要用这个插件
+Vue.use(Vuex)
 
 /* eslint-disable no-new */
 new Vue({ //實例對象
