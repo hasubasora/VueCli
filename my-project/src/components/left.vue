@@ -4,8 +4,8 @@
   <div class="left">
   
     <ul class="leftList">
-      <li v-mouse="{is:todos._move,fn:move}" draggable="true" class="oli1"></li>
-  
+      <li v-mouse="{is:todos._move,fn:move,xt:storeText}" draggable="true" class="oli1"></li>
+{{storeText}}
       <!--<li draggable="true" @click="set()" :class="[cla, cls,{'red':tt}]">2</li>-->
     </ul>
   </div>
@@ -29,6 +29,11 @@ export default {
     //   this.toods=response,data;
     //   console.log(response.data)
     // })
+  },
+  computed: {
+    storeText() {//计算 返回数据中心的数据 1 
+      return this.$store.state.phoneSizeId
+    },
   },
   methods: {
     move(x, y) {

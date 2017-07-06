@@ -17,14 +17,14 @@
             </ul>
         </div>
         <!--header-->
-        {{todos.fis}}   {{price}}
+        {{todos.fis}} {{price}}
         <!--身体-->
         <div class="todosBox" @click="onMyEventList" v-dragenter="{fs:show,fh:hide,bl:balance}" style="border:1px solid blue;background:skyblue;min-height:400px;">
             <o-noEmpy :todos="todos" v-show="todos.fis"></o-noEmpy>
             <o-goods :todos="todos" v-show="todos.fis"></o-goods>
     
         </div>
-     
+    
         <!--身体-->
     </div>
 </template>
@@ -49,6 +49,10 @@ export default {
         },
 
     },
+    created: function () {
+        
+
+    },
     methods: {
         show() {
             this.todos.fis = true;
@@ -62,6 +66,7 @@ export default {
 
         onMyEventList(x) { //可以的
             // console.log(this.$route.params)
+       
             this.phoneSize = {
                 t: this.$el.offsetTop,
                 l: this.$el.offsetLeft,
@@ -72,6 +77,7 @@ export default {
             // this.$emit('my-event', this.phoneSize) //触发
             // store
             // this.$store.commit('increment', this.price) //触发
+            this.$store.commit('oneSize', this.phoneSize) //触发
             this.$store.dispatch('increase', this.price) //触发
             // console.info(this.$el.offsetTop)
             // console.info(this.$el.offsetLeft)

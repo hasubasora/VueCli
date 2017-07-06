@@ -9,7 +9,6 @@ import router from './router'
 
 Vue.config.productionTip = false
 
-
 // 全局注册组件
 // Vue.component('my-header', [definition定义])
 Vue.use(VueAxios, axios) //告诉vue 要用这个插件
@@ -18,7 +17,8 @@ Vue.use(Vuex)
 // 实例化
 const store = new Vuex.Store({
     state: { //需要储存的数据
-        counts: 1
+        counts: 1,
+        phoneSizeId: ''
     },
     //getters
     getters: { //获取状态及里面的数据
@@ -33,6 +33,12 @@ const store = new Vuex.Store({
             // 变更状态
             state.counts += price
         },
+
+        oneSize(state, phoneSize) { //state 对外通讯
+            // 变更状态
+            state.phoneSizeId = phoneSize
+        },
+
         decrement() {
             state.counts -= price
         }
