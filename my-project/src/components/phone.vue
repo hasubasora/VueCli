@@ -49,9 +49,8 @@ export default {
         },
 
     },
-    created: function () {
-        
-
+    mounted: function () {
+        this.onMyEventList()
     },
     methods: {
         show() {
@@ -66,7 +65,7 @@ export default {
 
         onMyEventList(x) { //可以的
             // console.log(this.$route.params)
-       
+  
             this.phoneSize = {
                 t: this.$el.offsetTop,
                 l: this.$el.offsetLeft,
