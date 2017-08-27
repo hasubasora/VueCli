@@ -1,2 +1,2 @@
 # VueCli
-Vue2.2.0
+VUE+SASS+ES6 配置
