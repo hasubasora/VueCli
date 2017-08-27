@@ -57,6 +57,9 @@ module.exports = {
                     // use style-loader in development 
                     fallback: "style-loader"
                 })
+            }, {
+                test: /\.pug$/,
+                loader: 'pug'
             },
             {
                 test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
