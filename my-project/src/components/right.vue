@@ -12,6 +12,18 @@ export default {
     data: function() {	
         return {
             msg:'右边',
+            box:[
+                {
+                    a:1,
+                    list:[
+                        {
+                            a:1,
+                            b:2,
+                            c:3
+                        }
+                    ]
+                }
+            ]
         }
     },
     methods: {}
