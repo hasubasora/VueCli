@@ -1,6 +1,7 @@
 <template>
   <div class="hello">
-    
+  <img src='../assets/logo.png' alt=""/>
+  <img :src=arr alt="">
   
   </div> 
 
@@ -11,10 +12,11 @@ export default {
   name: 'hello',
   data () {
     return {
-      msg: '移动我',
+      // arr: './assets/logo.png',
+      arr: require('../assets/logo.png'),
       methods:{
         yd:function(){
-          
+
         }
       }
     }
